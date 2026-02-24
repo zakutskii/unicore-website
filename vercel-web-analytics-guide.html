@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Vercel Web Analytics | Unicore</title>
+    <meta name="description" content="Learn how to implement Vercel Web Analytics on your project with step-by-step instructions for all major frameworks.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Getting Started with Vercel Web Analytics">
+    <meta property="og:description" content="Learn how to implement Vercel Web Analytics on your project with step-by-step instructions for all major frameworks.">
+    <meta property="og:url" content="https://zakutskii.github.io/unicore-website/vercel-web-analytics-guide.html">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Getting Started with Vercel Web Analytics">
+    <meta name="twitter:description" content="Learn how to implement Vercel Web Analytics on your project with step-by-step instructions for all major frameworks.">
+    
+    <link rel="canonical" href="https://zakutskii.github.io/unicore-website/vercel-web-analytics-guide.html">
+    <link href="https://framerusercontent.com/images/rOXxwzicophx0vdkIdhxT7VDmM.png" rel="icon" media="(prefers-color-scheme: light)">
+    <link href="https://framerusercontent.com/images/hsIBMby7ouMwKdAq7YOruqIrN8Q.png" rel="icon" media="(prefers-color-scheme: dark)">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            color: #111;
+        }
+        
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #111;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #e01e5a;
+        }
+        
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        .note {
+            background: #f0f9ff;
+            border-left: 4px solid #0070f3;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .note p {
+            margin-bottom: 0;
+            color: #0070f3;
+        }
+        
+        .note strong {
+            font-weight: 600;
+        }
+        
+        .code-block {
+            margin-bottom: 2rem;
+        }
+        
+        .code-header {
+            background: #2d2d2d;
+            color: #888;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px 6px 0 0;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin-bottom: -0.5rem;
+        }
+        
+        .code-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: #2d2d2d;
+            padding: 0.5rem 1.5rem 0;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: -0.5rem;
+        }
+        
+        .code-tab {
+            padding: 0.5rem 1rem;
+            background: #1e1e1e;
+            color: #888;
+            border-radius: 4px 4px 0 0;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .code-tab.active {
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        a {
+            color: #0070f3;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #0070f3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+                color: #e5e5e5;
+            }
+            
+            h1, h2, h3, h4 {
+                color: #fff;
+            }
+            
+            p, li {
+                color: #a3a3a3;
+            }
+            
+            header {
+                border-bottom-color: #333;
+            }
+            
+            code {
+                background: #1e1e1e;
+                color: #ff6b9d;
+            }
+            
+            .note {
+                background: #0a1929;
+                border-left-color: #0070f3;
+            }
+            
+            .note p {
+                color: #3b9eff;
+            }
+        }
+    </style>
+    
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Unicore</a>
+        
+        <header>
+            <h1>Getting Started with Vercel Web Analytics</h1>
+            <p>This guide will help you get started with using Vercel Web Analytics on your project, showing you how to enable it, add the package to your project, deploy your app to Vercel, and view your data in the dashboard.</p>
+            <p><strong>Select your framework to view instructions on using the Vercel Web Analytics in your project</strong>.</p>
+        </header>
+
+        <main>
+            <section class="section">
+                <h2>Prerequisites</h2>
+                <ul>
+                    <li>A Vercel account. If you don't have one, you can <a href="https://vercel.com/signup">sign up for free</a>.</li>
+                    <li>A Vercel project. If you don't have one, you can <a href="https://vercel.com/new">create a new project</a>.</li>
+                    <li>The Vercel CLI installed. If you don't have it, you can install it using the following command:</li>
+                </ul>
+                
+                <div class="code-tabs">
+                    <span class="code-tab active">pnpm</span>
+                    <span class="code-tab">yarn</span>
+                    <span class="code-tab">npm</span>
+                    <span class="code-tab">bun</span>
+                </div>
+                <pre><code>pnpm i vercel</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Enable Web Analytics in Vercel</h3>
+                <p>On the Vercel dashboard, select your Project and then click the <strong>Analytics</strong> tab and click <strong>Enable</strong> from the dialog.</p>
+                <div class="note">
+                    <p><strong>💡 Note:</strong> Enabling Web Analytics will add new routes (scoped at <code>/_vercel/insights/*</code>) after your next deployment.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3>Add @vercel/analytics to your project</h3>
+                <p>Using the package manager of your choice, add the <code>@vercel/analytics</code> package to your project:</p>
+                
+                <div class="code-tabs">
+                    <span class="code-tab active">pnpm</span>
+                    <span class="code-tab">yarn</span>
+                    <span class="code-tab">npm</span>
+                    <span class="code-tab">bun</span>
+                </div>
+                <pre><code>pnpm i @vercel/analytics</code></pre>
+            </section>
+
+            <section class="section">
+                <h2>Framework-Specific Implementation</h2>
+                
+                <h3>Next.js (Pages Directory)</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering more seamless integration with Next.js, including route support.</p>
+                <p>If you are using the <code>pages</code> directory, add the following code to your main app file:</p>
+                
+                <div class="code-header">pages/_app.tsx</div>
+                <pre><code>import type { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/next";
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    &lt;&gt;
+      &lt;Component {...pageProps} /&gt;
+      &lt;Analytics /&gt;
+    &lt;/&gt;
+  );
+}
+
+export default MyApp;</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Next.js (App Router)</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering more seamless integration with Next.js, including route support.</p>
+                <p>Add the following code to the root layout:</p>
+                
+                <div class="code-header">app/layout.tsx</div>
+                <pre><code>import { Analytics } from "@vercel/analytics/next";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;title&gt;Next.js&lt;/title&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        {children}
+        &lt;Analytics /&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Remix</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering a seamless integration with Remix, including route detection.</p>
+                <p>Add the following code to your root file:</p>
+                
+                <div class="code-header">app/root.tsx</div>
+                <pre><code>import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
+import { Analytics } from "@vercel/analytics/remix";
+
+export default function App() {
+  return (
+    &lt;html lang="en"&gt;
+      &lt;head&gt;
+        &lt;meta charSet="utf-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+        &lt;Meta /&gt;
+        &lt;Links /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;Analytics /&gt;
+        &lt;Outlet /&gt;
+        &lt;ScrollRestoration /&gt;
+        &lt;Scripts /&gt;
+        &lt;LiveReload /&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Nuxt</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering more seamless integration with Nuxt, including route support.</p>
+                <p>Add the following code to your main component:</p>
+                
+                <div class="code-header">app.vue</div>
+                <pre><code>&lt;script setup lang="ts"&gt;
+import { Analytics } from '@vercel/analytics/nuxt';
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Analytics /&gt;
+  &lt;NuxtPage /&gt;
+&lt;/template&gt;</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>SvelteKit</h3>
+                <p>The <code>injectAnalytics</code> function is a wrapper around the tracking script, offering more seamless integration with SvelteKit, including route support.</p>
+                <p>Add the following code to the main layout:</p>
+                
+                <div class="code-header">src/routes/+layout.ts</div>
+                <pre><code>import { dev } from "$app/environment";
+import { injectAnalytics } from "@vercel/analytics/sveltekit";
+
+injectAnalytics({ mode: dev ? "development" : "production" });</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Astro</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering more seamless integration with Astro, including route support.</p>
+                <p>Add the following code to your base layout:</p>
+                
+                <div class="code-header">src/layouts/Base.astro</div>
+                <pre><code>---
+import Analytics from '@vercel/analytics/astro';
+{/* ... */}
+---
+
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;!-- ... --&gt;
+    &lt;Analytics /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;slot /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <div class="note">
+                    <p><strong>💡 Note:</strong> The <code>Analytics</code> component is available in version <code>@vercel/analytics@1.4.0</code> and later. If you are using an earlier version, you must configure the <code>webAnalytics</code> property of the Vercel adapter in your <code>astro.config.mjs</code> file. For further information, see the <a href="https://docs.astro.build/en/guides/integrations-guide/vercel/#webanalytics">Astro adapter documentation</a>.</p>
+                </div>
+
+                <div class="code-header">astro.config.mjs (for older versions)</div>
+                <pre><code>import { defineConfig } from "astro/config";
+import vercel from "@astrojs/vercel/serverless";
+
+export default defineConfig({
+  output: "server",
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true, // set to false when using @vercel/analytics@1.4.0
+    },
+  }),
+});</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>React (Create React App)</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering more seamless integration with React.</p>
+                <div class="note">
+                    <p><strong>💡 Note:</strong> When using the plain React implementation, there is no route support.</p>
+                </div>
+                <p>Add the following code to the main app file:</p>
+                
+                <div class="code-header">App.tsx</div>
+                <pre><code>import { Analytics } from "@vercel/analytics/react";
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      {/* ... */}
+      &lt;Analytics /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Vue</h3>
+                <p>The <code>Analytics</code> component is a wrapper around the tracking script, offering more seamless integration with Vue.</p>
+                <div class="note">
+                    <p><strong>💡 Note:</strong> Route support is automatically enabled if you're using <code>vue-router</code>.</p>
+                </div>
+                <p>Add the following code to your main component:</p>
+                
+                <div class="code-header">src/App.vue</div>
+                <pre><code>&lt;script setup lang="ts"&gt;
+import { Analytics } from '@vercel/analytics/vue';
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;Analytics /&gt;
+  &lt;!-- your content --&gt;
+&lt;/template&gt;</code></pre>
+            </section>
+
+            <section class="section">
+                <h3>Plain HTML Sites</h3>
+                <p>For plain HTML sites, you can add the following script to your <code>.html</code> files:</p>
+                
+                <div class="code-header">index.html</div>
+                <pre><code>&lt;script&gt;
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+&lt;/script&gt;
+&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
+
+                <div class="note">
+                    <p><strong>💡 Note:</strong> When using the HTML implementation, there is no need to install the <code>@vercel/analytics</code> package. However, there is no route support.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3>Other Frameworks</h3>
+                <p>Import the <code>inject</code> function from the package, which will add the tracking script to your app. <strong>This should only be called once in your app, and must run in the client</strong>.</p>
+                <div class="note">
+                    <p><strong>💡 Note:</strong> There is no route support with the <code>inject</code> function.</p>
+                </div>
+                <p>Add the following code to your main app file:</p>
+                
+                <div class="code-header">main.ts</div>
+                <pre><code>import { inject } from "@vercel/analytics";
+
+inject();</code></pre>
+            </section>
+
+            <section class="section">
+                <h2>Deploy your app to Vercel</h2>
+                <p>Deploy your app using the following command:</p>
+                
+                <pre><code>vercel deploy</code></pre>
+
+                <p>If you haven't already, we also recommend connecting your project's Git repository, which will enable Vercel to deploy your latest commits to main without terminal commands.</p>
+                <p>Once your app is deployed, it will start tracking visitors and page views.</p>
+
+                <div class="note">
+                    <p><strong>💡 Note:</strong> If everything is set up properly, you should be able to see a Fetch/XHR request in your browser's Network tab from <code>/_vercel/insights/view</code> when you visit any page.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>View your data in the dashboard</h2>
+                <p>Once your app is deployed, and users have visited your site, you can view your data in the dashboard.</p>
+                <p>To do so, go to your dashboard, select your project, and click the <strong>Analytics</strong> tab.</p>
+                <p>After a few days of visitors, you'll be able to start exploring your data by viewing and filtering the panels.</p>
+                <p>Users on Pro and Enterprise plans can also add custom events to their data to track user interactions such as button clicks, form submissions, or purchases.</p>
+            </section>
+
+            <section class="section">
+                <h2>Privacy and Compliance</h2>
+                <p>Learn more about how Vercel supports privacy and data compliance standards with Vercel Web Analytics.</p>
+            </section>
+
+            <section class="section">
+                <h2>Next Steps</h2>
+                <p>Now that you have Vercel Web Analytics set up, you can explore the following topics to learn more:</p>
+                <ul>
+                    <li>Learn how to use the <code>@vercel/analytics</code> package</li>
+                    <li>Learn how to set up custom events</li>
+                    <li>Learn about filtering data</li>
+                    <li>Read about privacy and compliance</li>
+                    <li>Explore pricing</li>
+                    <li>Troubleshooting</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e5e5e5; color: #888; font-size: 0.9rem;">
+            <p>© 2026 Unicore. This guide is based on <a href="https://vercel.com/docs/analytics">Vercel's official documentation</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
