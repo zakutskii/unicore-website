@@ -1,12 +1,15 @@
 # Todo
 
-- [x] Удалить плавающую кнопку `Edit content` полностью
-- [x] Проверить, что в `index.html` не осталось `__framer-editorbar`
-- [x] Проверить, что основной runtime сайта сохранён (`id="main"`, `data-framer-bundle="main"`)
-- [x] Закоммитить и запушить исправление
+## Analytics + Speed Insights (2026-02-24)
+
+- [x] Зафиксировать план внедрения и проверок
+- [x] Добавить Vercel Analytics и Speed Insights в `index.html`
+- [x] Добавить Vercel Analytics и Speed Insights в `404.html` и `404/index.html`
+- [x] Проверить, что скрипты присутствуют и не дублируются
+- [x] Закоммитить и запушить изменения
 
 # Review
 
 - Статус: выполнено
-- Проверки: `rg __framer-editorbar`, `rg id=\"main\"`, `rg data-framer-bundle=\"main\"`
-- Результат: editor bar полностью удалён, основной сайт сохранён
+- Подход: так как проект статический HTML (без Next.js layout), интеграция выполнена через Vercel script tags для static sites.
+- Проверки: во всех страницах (`index.html`, `404.html`, `404/index.html`) по одному вхождению `/_vercel/insights/script.js` и `/_vercel/speed-insights/script.js`.

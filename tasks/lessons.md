@@ -7,3 +7,5 @@
 - Проверка перед push: обязательно убедиться, что в `index.html` присутствуют `id="main"` и `data-framer-bundle="main"`.
 - Ошибка: удаление только iframe оказалось недостаточным, т.к. кнопка создавалась отдельным editorbar-блоком.
 - Правило: для Framer editor bar удалять весь префиксный блок `__framer-editorbar` (CSS/JS/iframe), а не только iframe.
+- Коррекция от пользователя: при повторных правках удаление editorbar-блоков снова ломало страницу.
+- Новое правило: кнопку Framer `Edit content` скрывать только безопасным CSS-оверраем (`display:none !important` для `#__framer-editorbar*`) в `<head>`, без вырезания встроенных Framer-блоков из HTML.
