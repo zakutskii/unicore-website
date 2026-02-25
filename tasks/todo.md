@@ -1,17 +1,18 @@
 # Todo
 
-## Cookie Banner + Consent-Based Analytics (2026-02-24)
+## Terms of Use + Privacy Policy Pages (2026-02-25)
 
 - [x] Зафиксировать план внедрения и проверок
-- [x] Добавить cookie banner (UI + логика accept/decline) для всего сайта
-- [x] Перевести Vercel Analytics/Speed Insights на загрузку только после consent
-- [x] Подключить решение на `index.html`, `404.html`, `404/index.html`
-- [x] Проверить отсутствие автозагрузки analytics без consent и корректную загрузку после accept
+- [x] Создать страницы `terms-of-use/index.html` и `privacy-policy/index.html`
+- [x] Привязать ссылки в footer (`Terms of use`, `Privacy policy`) в `index.html`, `404.html`, `404/index.html`
+- [x] Добавить новые страницы в `sitemap.xml`
+- [x] Проверить корректность ссылок и наличие страниц
 - [x] Закоммитить и запушить изменения
 
 # Review
 
 - Статус: выполнено
-- Реализация: добавлены `/cookie-consent.css` и `/cookie-consent.js`; баннер показывает выбор Accept/Decline и сохраняет его в `localStorage` (`unicore_cookie_consent_v1`).
-- Поведение: при `accepted` динамически грузятся `/_vercel/insights/script.js` и `/_vercel/speed-insights/script.js`; при `rejected` аналитика не загружается.
-- Проверки: во всех 3 HTML-страницах убрана автозагрузка vercel-скриптов из `<head>`, добавены подключения cookie-consent и один экземпляр баннера.
+- Создано: `/Users/bibizan/unicore-website/terms-of-use/index.html` и `/Users/bibizan/unicore-website/privacy-policy/index.html`.
+- Footer: `Terms of use` ведёт на `/terms-of-use/`, `Privacy policy` ведёт на `/privacy-policy/` в `/Users/bibizan/unicore-website/index.html`, `/Users/bibizan/unicore-website/404.html`, `/Users/bibizan/unicore-website/404/index.html`.
+- Sitemap: добавлены URL для новых страниц в `/Users/bibizan/unicore-website/sitemap.xml`.
+- Проверка: в каждой ключевой странице присутствует по одной ссылке на `/terms-of-use/` и `/privacy-policy/`; новые страницы содержат базовые SEO-теги и валидную структуру (`</head>`, `</body>`).
