@@ -39,3 +39,18 @@
 
 - В `privacy-policy/index.html` и `terms-of-use/index.html` кнопка `Go back` теперь ведет на `../index.html`.
 - В `404/index.html` и `404.html` добавлен блок `#hide-framer-editorbar`, который скрывает Framer edit UI.
+
+## Go Back Runtime Fix (2026-02-25)
+
+- [x] Воспроизвести и локализовать причину нерабочего `Go back` после предыдущего пуша
+- [x] Добавить runtime-fallback для `Go back` в `privacy-policy/index.html` и `terms-of-use/index.html`
+- [x] Убедиться, что переход форсируется на `/index.html` даже при перехвате Framer
+- [x] Удалить iframe editor bar из `404/index.html` и `404.html`
+
+### Review
+
+- В legal-страницах добавлен скрипт `#go-back-home-fix`, который:
+  - выбирает элементы `[data-framer-name="Go back"]`
+  - устанавливает `href` в `/index.html`
+  - перехватывает клик и направляет на `/index.html`
+- В `404/index.html` и `404.html` удален iframe `#__framer-editorbar`, чтобы edit UI не отображался.
