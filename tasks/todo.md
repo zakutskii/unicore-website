@@ -28,3 +28,14 @@
   - `privacy-policy/index.html` и `terms-of-use/index.html` полностью совпадают с новым экспортом.
   - `404/index.html` совпадает с новым экспортом.
   - `404.html` совпадает с `404/index.html`.
+
+## Legal Back Links + 404 Edit Button (2026-02-25)
+
+- [x] Обновить кнопки `Go back` в `privacy-policy` и `terms-of-use` на возврат на главную
+- [x] Скрыть Framer Edit button на `404/index.html` и `404.html` безопасным CSS-оверраем
+- [x] Проверить ссылки и наличие оверрая
+
+### Review
+
+- В `privacy-policy/index.html` и `terms-of-use/index.html` кнопка `Go back` теперь ведет на `../index.html`.
+- В `404/index.html` и `404.html` добавлен блок `#hide-framer-editorbar`, который скрывает Framer edit UI.
