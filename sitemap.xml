@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zakutskii.github.io/unicore-website/</loc>
+    <loc>https://unicore.me/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://zakutskii.github.io/unicore-website/terms-of-use/</loc>
+    <loc>https://unicore.me/terms-of-use/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://zakutskii.github.io/unicore-website/privacy-policy/</loc>
+    <loc>https://unicore.me/privacy-policy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://zakutskii.github.io/unicore-website/vercel-web-analytics-guide.html</loc>
+    <loc>https://unicore.me/vercel-web-analytics-guide.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

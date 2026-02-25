@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zakutskii.github.io/unicore-website/sitemap.xml
+Sitemap: https://unicore.me/sitemap.xml
