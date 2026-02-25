@@ -1,17 +1,30 @@
 # Todo
 
-## Footer Legal Links Domain Fix (2026-02-25)
+## Import Framer Pages + Footer Sync (2026-02-25)
 
-- [x] Зафиксировать план внедрения и проверок
-- [x] На главной странице `index.html` привязать footer-ссылки к `https://unicore.me/terms-of-use/` и `https://unicore.me/privacy-policy/`
-- [x] Проверить, что ссылки присутствуют именно в `/Users/bibizan/unicore-website/index.html`
-- [x] Обновить `tasks/lessons.md` по коррекции
-- [x] Закоммитить и запушить изменения
+- [x] Зафиксировать план работ
+- [x] Импортировать новые страницы из экспорта Framer: `404/index.html`, `privacy-policy/index.html`, `terms-of-use/index.html`
+- [x] Синхронизировать `404.html` с новой 404-страницей
+- [x] Внедрить правки footer на главной странице в `index.html` из нового экспорта
+- [x] Сохранить локальные кастомизации главной (`hide-framer-editorbar`, `cookie-consent` блок и скрипт)
+- [x] Проверить ссылки/якоря в footer и работоспособность страниц
+- [x] Добавить review-результат в `tasks/todo.md`
 
 # Review
 
 - Статус: выполнено
-- В `/Users/bibizan/unicore-website/index.html` footer-ссылки обновлены на абсолютные URL:
-  - `https://unicore.me/terms-of-use/`
-  - `https://unicore.me/privacy-policy/`
-- Проверка: локальных `href="/terms-of-use..."` и `href="/privacy-policy..."` на главной странице не осталось.
+- Импортированы новые страницы из экспорта Framer:
+  - `404/index.html`
+  - `privacy-policy/index.html`
+  - `terms-of-use/index.html`
+- `404.html` синхронизирован с `404/index.html`.
+- В `index.html` применены правки footer из нового экспорта (включая кликабельные social/policy ссылки и обновлённую структуру footer).
+- В `index.html` сохранены локальные кастомизации:
+  - CSS-скрытие Framer editor bar (`#hide-framer-editorbar`)
+  - `cookie-consent.css` в `<head>`
+  - баннер `#cookie-consent-banner` + `cookie-consent.js` в конце `<body>`
+  - дополнительные SEO/meta блоки (`theme-color`, `og:site_name`, `author`, `ld+json`)
+- Проверка:
+  - `privacy-policy/index.html` и `terms-of-use/index.html` полностью совпадают с новым экспортом.
+  - `404/index.html` совпадает с новым экспортом.
+  - `404.html` совпадает с `404/index.html`.
