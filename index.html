@@ -270,7 +270,19 @@
 #__framer-editorbar.status_measuring {
     clip-path: unset;
 }
-</style></head>
+</style><style id="hide-framer-editorbar">
+#__framer-editorbar,
+#__framer-editorbar-container,
+#__framer-editorbar-label,
+#__framer-editorbar-button,
+[id^="__framer-editorbar"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+</style>
+</head>
 <body>
 	
 	<!-- Start of bodyStart -->

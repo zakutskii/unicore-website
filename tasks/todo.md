@@ -95,3 +95,20 @@
   - `terms-of-use/index.html`
 - Verification with `cmp` passed for all replaced files.
 - Verification with `sha256sum` confirmed source and destination hashes are identical.
+
+## Hide Framer Editorbar (2026-03-05)
+
+- [x] Add safe CSS override to hide Framer editor bar on all public pages
+- [x] Verify override exists on `index`, `404.html`, `404/index`, `privacy-policy`, `terms-of-use`
+- [x] Add review notes
+
+### Review
+
+- Added `#hide-framer-editorbar` style block to:
+  - `index.html`
+  - `404.html`
+  - `404/index.html`
+  - `privacy-policy/index.html`
+  - `terms-of-use/index.html`
+- The override hides all editorbar nodes via `#__framer-editorbar*` selectors and `[id^="__framer-editorbar"]`.
+- Verified the style block is present in all five files with `rg`.
